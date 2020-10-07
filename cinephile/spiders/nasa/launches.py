@@ -1,17 +1,17 @@
 import scrapy
 
 class NasaLaunchesSpider(scrapy.Spider):
-    name = "nasa"
+    name = 'toscrape-xpath'
     start_urls = [
-        'https://www.nasa.gov/launchschedule/',
+        'http://quotes.toscrape.com/',
     ]
 
     def parse(self, response):
-        for data in response.css('div.launch-event'):
+        for quote in response.xpath('//div[@class="quote"]'):
             yield {
-                'launchTitle': data.css('div.title a::text').extract_first(),
-                'launchDate': data.xpath('.//div[@class="date"]/text()').extract_first(),
-                'launchDescription': data.xpath('.//span[@class="description"]/text()').extract_first()
+                'text': quote.xpath('./span[@class="text"]/text()').extract_first(),
+                'author': quote.xpath('.//small[@class="author"]/text()').extract_first(),
+                'tags': quote.xpath('.//div[@class="tags"]/a[@class="tag"]/text()').extract()
             }
 
         next_page = response.css('a[rel="next"]::attr(href)').extract_first()
