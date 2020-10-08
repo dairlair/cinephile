@@ -1,7 +1,7 @@
 import scrapy
 from scrapy.crawler import CrawlerProcess
 from cinephile.spiders.nasa.launches import NasaLaunchesSpider
-from cinephile.spiders.pornhub.main import PornhubMainSpider
+from cinephile.spiders.pornhub.main import PornhubVideosMainSpider
 import logging
 
 print ('Application is running....')
@@ -15,5 +15,5 @@ process = CrawlerProcess(settings={
     'DEPTH_LIMIT': 10
 })
 
-process.crawl(PornhubMainSpider)
+process.crawl(PornhubVideosMainSpider)
 process.start()
