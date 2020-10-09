@@ -1,6 +1,7 @@
 from injector import Injector
 from cinephile.core import CacheInterface
 from cinephile.dependencies import configure
+import logging
 
 
 class RedisPipeline(object):
@@ -20,15 +21,17 @@ class RedisPipeline(object):
         result = self.cache.set_if_not_exists('url:' + url, 1)
 
         if result is False:
-            print(f'URL {url} is already processed and will be skipped')
+            logging.info(f'URL {url} is already processed and will be skipped')
             return None
 
-        print('Items is processed:')
-        print(item)
+        logging.info('Items is processed:')
+        logging.error(item)
         return item
 
     def open_spider(self, spider):
-        print('Open the Redis connection')
+        # print('Open the Redis connection')
+        pass
 
     def close_spider(self, spider):
-        print('Close the Redis connection')
+        # print('Close the Redis connection')
+        pass
