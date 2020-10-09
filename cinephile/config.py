@@ -1,5 +1,6 @@
 import os
 
+
 class Config(object):
     @staticmethod
     def cache_url() -> str:

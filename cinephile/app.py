@@ -1,13 +1,9 @@
-import scrapy
 from scrapy.crawler import CrawlerProcess
-from cinephile.spiders.nasa.launches import NasaLaunchesSpider
 from cinephile.spiders.pornhub.main import PornhubVideosMainSpider
-from cinephile.dependencies import configure
 import logging
-from injector import Injector
 
-print ('Application is running....')
-injector = Injector([configure])
+
+print('Application is running....')
 
 process = CrawlerProcess(settings={
     'ITEM_PIPELINES': {
@@ -15,7 +11,7 @@ process = CrawlerProcess(settings={
     },
     'LOG_LEVEL': logging.WARNING,
     'DOWNLOAD_DELAY': 2,
-    'DEPTH_LIMIT': 10
+    'DEPTH_LIMIT': 1
 })
 
 process.crawl(PornhubVideosMainSpider)

@@ -1,6 +1,7 @@
 import scrapy
 import datetime
 import time
+import sys
 
 
 class PornhubVideosMainSpider(scrapy.Spider):
@@ -11,16 +12,19 @@ class PornhubVideosMainSpider(scrapy.Spider):
     ]
 
     def parse(self, response):
-        for video_link in response.css('#videoCategory a.videoPreviewBg'):
+        for video in response.css('#videoCategory a.videoPreviewBg'):
+            # print(video.ex)
+            # sys.exit(0)
+            img = video.css('img')
             yield {
                 'spider': self.name,
                 'type': self.content_type,
-                'url': video_link.css('::attr(href)').extract_first(),
-                'title': video_link.css('::attr(title)').extract_first(),
+                'url': video.css('::attr(href)').extract_first(),
+                'title': video.css('::attr(title)').extract_first(),
                 'foundAtTimestamp': time.time(),
                 'foundAt': datetime.datetime.now().astimezone().isoformat(),
-                'videoId': video_link.css('img::attr(data-video-id)').extract_first(),
-                'duration': video_link.css('var.duration::text').extract_first()
+                'videoId': img.css('::attr(data-video-id)').extract_first(),
+                'duration': video.css('var.duration::text').extract_first()
             }
 
         next_page = response.css('link[rel=next]::attr(href)').extract_first()
@@ -32,4 +36,4 @@ class PornhubVideosMainSpider(scrapy.Spider):
     # private String url; +
     # private String title; +
     # private String previewUrl;
-    # private DateTime foundAt; ~
+    # private DateTime foundAt; +
