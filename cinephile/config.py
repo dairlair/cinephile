@@ -8,7 +8,7 @@ class Config(object):
 
     @staticmethod
     def internal() -> float:
-        return float(os.environ.get('INTERVAL', 10))
+        return float(os.environ.get('INTERVAL', 60))
 
     @staticmethod
     def cache_url() -> str:
