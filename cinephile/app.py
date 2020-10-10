@@ -38,7 +38,7 @@ def sleep(self, *args, seconds):
 
 def _crawl(result, spider):
     deferred = process.crawl(spider)
-    deferred.addCallback(lambda results: print('sleep...'))
+    # deferred.addCallback(lambda results: print('sleep...'))
     deferred.addCallback(sleep, seconds=Config.internal())
     deferred.addCallback(_crawl, spider)
     return deferred
