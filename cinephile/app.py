@@ -45,8 +45,8 @@ def _crawl(result, spider):
 
 
 if __name__ == "__main__":
-    spiders_fa
-    print(type(PornhubVideosMainSpider))
-    # _crawl(None, PornhubVideosMainSpider)
-    # logging.getLogger().setLevel(Config.log_level())
-    # process.start()
+    spiders_factory = SpidersFactory()
+    spider = spiders_factory.create_spider(Config.spider())
+    _crawl(None, spider)
+    logging.getLogger().setLevel(Config.log_level())
+    process.start()

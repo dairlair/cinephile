@@ -7,7 +7,7 @@ class SpidersFactory(object):
             PornhubVideosMainSpider.name: PornhubVideosMainSpider
         }
 
-    def create_spider(self, name: str):
+    def create_spider(self, name: str) -> type:
         map = self.get_map()
         if name in map:
             return map[name]
