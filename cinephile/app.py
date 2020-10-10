@@ -1,4 +1,5 @@
 from scrapy.crawler import CrawlerProcess
+from cinephile.spiders.factory import SpidersFactory
 from cinephile.spiders.pornhub.main import PornhubVideosMainSpider
 from cinephile.config import Config
 from scrapy.utils.log import configure_logging
@@ -7,7 +8,6 @@ from twisted.internet.task import deferLater
 import logging
 import sys
 import signal
-import time
 
 
 def signal_handler(signal, frame):
@@ -24,8 +24,8 @@ process = CrawlerProcess(settings={
     'ITEM_PIPELINES': {
         'cinephile.pipelines.redis.RedisPipeline': 300,
     },
-    'DOWNLOAD_DELAY': 2,
-    'DEPTH_LIMIT': 1,
+    'DOWNLOAD_DELAY': Config.download_delay(),
+    'DEPTH_LIMIT': Config.depth_limit(),
     'COOKIES_ENABLED': False,
     'LOG_LEVEL': Config.log_level(),
 })
@@ -45,6 +45,8 @@ def _crawl(result, spider):
 
 
 if __name__ == "__main__":
-    _crawl(None, PornhubVideosMainSpider)
-    logging.getLogger().setLevel(Config.log_level())
-    process.start()
+    spiders_fa
+    print(type(PornhubVideosMainSpider))
+    # _crawl(None, PornhubVideosMainSpider)
+    # logging.getLogger().setLevel(Config.log_level())
+    # process.start()

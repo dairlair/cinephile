@@ -1,7 +1,6 @@
 import scrapy
 import datetime
 import time
-import sys
 
 
 class PornhubVideosMainSpider(scrapy.Spider):
@@ -13,8 +12,6 @@ class PornhubVideosMainSpider(scrapy.Spider):
 
     def parse(self, response):
         for video in response.css('#videoCategory a.videoPreviewBg'):
-            # print(video.ex)
-            # sys.exit(0)
             img = video.css('img')
             yield {
                 'spider': self.name,
@@ -30,10 +27,3 @@ class PornhubVideosMainSpider(scrapy.Spider):
         next_page = response.css('link[rel=next]::attr(href)').extract_first()
         if next_page is not None:
             yield response.follow(next_page, callback=self.parse)
-
-    # private String spider +;
-    # private String type; +
-    # private String url; +
-    # private String title; +
-    # private String previewUrl;
-    # private DateTime foundAt; +
