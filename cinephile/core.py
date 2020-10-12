@@ -19,3 +19,19 @@ class CacheInterface(ABC):
         :param key:
         """
         raise NotImplementedError
+
+
+class PublisherInferface(ABC):
+    """
+        Publisher interface is used to declare dependency
+        from some persistent storage / messages broker.
+    """
+
+    @abstractmethod
+    def publish(self, event: dict) -> bool:
+        """
+        Must return True is the event has been published
+        successfully, False otherwise.
+
+        """
+        raise NotImplementedError
