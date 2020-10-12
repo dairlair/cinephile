@@ -1,6 +1,5 @@
 from scrapy.crawler import CrawlerProcess
 from cinephile.spiders.factory import SpidersFactory
-from cinephile.spiders.pornhub.main import PornhubVideosMainSpider
 from cinephile.config import Config
 from scrapy.utils.log import configure_logging
 from twisted.internet import reactor
