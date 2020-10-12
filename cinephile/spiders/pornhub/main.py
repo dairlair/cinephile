@@ -6,8 +6,9 @@ import time
 class PornhubVideosMainSpider(scrapy.Spider):
     content_type: str = 'video'
     name: str = 'pornhub-videos-main'
+    base_url: str = 'https://www.pornhub.com'
     start_urls = [
-        'https://www.pornhub.com/',
+        base_url,
     ]
 
     def parse(self, response):
@@ -16,7 +17,7 @@ class PornhubVideosMainSpider(scrapy.Spider):
             yield {
                 'spider': self.name,
                 'type': self.content_type,
-                'url': video.css('::attr(href)').extract_first(),
+                'url': self.base_url + video.css('::attr(href)').extract_first(),
                 'title': video.css('::attr(title)').extract_first(),
                 'foundAtTimestamp': time.time(),
                 'foundAt': datetime.datetime.now().astimezone().isoformat(),
