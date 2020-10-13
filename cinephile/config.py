@@ -9,7 +9,7 @@ class Config(object):
 
     @staticmethod
     def amqp_url() -> str:
-        default_url = 'amqp://guest:guest@localhost:5672/%2F'
+        default_url = 'amqp://ia:ia@host.docker.internal:5672/iavhost'
         return os.environ.get('AMQP_URL', default_url)
 
     @staticmethod
