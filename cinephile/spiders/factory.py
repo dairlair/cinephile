@@ -1,10 +1,12 @@
 from cinephile.spiders.pornhub.main import PornhubVideosMainSpider
+from cinephile.spiders.xhamster.main import XhamsterVideosMainSpider
 
 
 class SpidersFactory(object):
     def get_map(self) -> dict:
         return {
-            PornhubVideosMainSpider.name: PornhubVideosMainSpider
+            PornhubVideosMainSpider.name: PornhubVideosMainSpider,
+            XhamsterVideosMainSpider.name: XhamsterVideosMainSpider,
         }
 
     def create_spider(self, name: str) -> type:
