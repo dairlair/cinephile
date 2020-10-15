@@ -16,7 +16,15 @@ def test_pornhub_main_spider() -> None:
         items.append(item)
 
     expected = [
-        {'spider': 'pornhub-videos-main', 'type': 'video', 'url': 'https://www.pornhub.comhttps://www.pornhub.com/view_video.php?viewkey=ph5ae432c4cb16e', 'title': 'Sexy blonde exhibitionist April strips naked outdoors and amateur babe', 'videoId': None, 'duration': None},
+        {
+            'spider': 
+            'pornhub-videos-main', 
+            'type': 'video', 
+            'url': 'https://www.pornhub.com/view_video.php?viewkey=ph5ae432c4cb16e', 
+            'title': 'Sexy blonde exhibitionist April strips naked outdoors and amateur babe', 
+            'videoId': None, 
+            'duration': None
+        },
     ]
 
     assert items == expected
