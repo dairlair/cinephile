@@ -9,7 +9,7 @@ class Config(object):
 
     @staticmethod
     def amqp_url() -> str:
-        default_url = 'amqp://ia:ia@host.docker.internal:5672/iavhost'
+        default_url = 'amqp://guest:guest@host.docker.internal:5672/%2f'
         return os.environ.get('AMQP_URL', default_url)
 
     @staticmethod
@@ -22,7 +22,7 @@ class Config(object):
 
     @staticmethod
     def cache_url() -> str:
-        return os.environ.get('CACHE_URL', 'redis://localhost:6379/0')
+        return os.environ.get('CACHE_URL', 'redis://host.docker.internal:6379/0')
 
     @staticmethod
     def internal() -> float:
